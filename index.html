@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>동백신봉선 · 신봉동 현황판</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Pretendard', -apple-system, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+
+  .banner-img { width: 100%; max-height: 250px; object-fit: cover; display: block; }
+
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0a3d62 50%, #1a1a2e 100%);
+    padding: 28px 24px 20px;
+    text-align: center;
+    border-bottom: 3px solid #FFE13B;
+  }
+  .hero h1 { font-size: 20px; font-weight: 800; color: #FFE13B; margin-bottom: 6px; }
+  .hero .subtitle { font-size: 12px; color: #aaa; margin-bottom: 14px; }
+  .counter-box {
+    background: rgba(255,225,59,0.08); border: 2px solid #FFE13B;
+    border-radius: 16px; padding: 18px 24px; display: inline-block; min-width: 300px;
+  }
+  .counter-label { font-size: 13px; color: #FFE13B; font-weight: 600; margin-bottom: 6px; }
+  .counter-main { font-size: 18px; font-weight: 700; color: #FFE13B; line-height: 1.6; }
+  .counter-main .num { font-size: 36px; font-weight: 900; }
+  .counter-main .unit { font-size: 14px; font-weight: 600; margin: 0 2px; }
+  .counter-main .sec { font-size: 28px; }
+  .counter-since { font-size: 10px; color: #888; margin-top: 6px; }
+  .meta { font-size: 11px; color: #666; margin-top: 10px; }
+  .meta .time { color: #FFE13B; }
+
+  .tabs {
+    display: flex; gap: 6px; padding: 10px 16px; background: #12122a;
+    overflow-x: auto; border-bottom: 1px solid #2a2a4a;
+  }
+  .tab {
+    padding: 7px 12px; border-radius: 100px; font-size: 12px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; border: 1px solid #2a2a4a;
+    background: transparent; color: #888; font-family: inherit; transition: all 0.2s;
+  }
+  .tab.active { background: #FFE13B; color: #000; border-color: #FFE13B; }
+  .tab:hover:not(.active) { border-color: #FFE13B55; color: #FFE13B; }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+  .category { display: none; }
+  .category.active { display: block; }
+
+  .source-links { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 0; margin-bottom: 10px; }
+  .source-link {
+    padding: 5px 10px; background: #1e1e3a; border-radius: 6px; font-size: 11px;
+    color: #FFE13B; text-decoration: none; border: 1px solid #FFE13B33;
+  }
+  .source-link:hover { background: #FFE13B22; }
+
+  .items { display: flex; flex-direction: column; gap: 8px; }
+  .item {
+    display: block; padding: 12px 14px; background: #1a1a2e; border-radius: 10px;
+    text-decoration: none; color: inherit; transition: all 0.2s; border: 1px solid #2a2a4a;
+  }
+  .item:hover { background: #1e1e3a; border-color: #FFE13B33; transform: translateY(-1px); }
+  .item-title { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.5; margin-bottom: 3px; }
+  .item-desc { font-size: 11px; color: #888; line-height: 1.5; margin-bottom: 3px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .item-meta { font-size: 10px; color: #555; }
+
+  .timeline { padding: 10px 0; }
+  .timeline-item {
+    padding: 12px 16px; border-left: 3px solid #FFE13B; margin-bottom: 12px;
+    background: #1a1a2e; border-radius: 0 8px 8px 0;
+  }
+  .timeline-date { font-size: 12px; color: #FFE13B; font-weight: 700; margin-bottom: 4px; }
+  .timeline-text { font-size: 13px; color: #ddd; line-height: 1.6; }
+
+  .board-section {
+    margin-top: 20px; padding: 20px; background: #1a1a2e; border-radius: 12px;
+    border: 1px solid #2a2a4a;
+  }
+  .board-section h3 { color: #FFE13B; font-size: 16px; margin-bottom: 12px; }
+  #disqus_thread { background: #1a1a2e; }
+
+  .loading { text-align: center; padding: 30px; color: #555; font-size: 13px; }
+  .error { text-align: center; padding: 30px; color: #E74C3C; font-size: 13px; }
+
+  .refresh-btn {
+    position: fixed; bottom: 16px; right: 16px; background: #FFE13B; color: #000;
+    border: none; padding: 10px 18px; border-radius: 100px; font-weight: 700;
+    font-size: 13px; cursor: pointer; font-family: inherit;
+    box-shadow: 0 4px 12px rgba(255,225,59,0.3);
+  }
+
+  @media (max-width: 768px) {
+    .counter-main .num { font-size: 28px; }
+    .counter-main .sec { font-size: 22px; }
+    .hero { padding: 20px 16px; }
+    .counter-box { min-width: auto; width: 90%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 배너 이미지: 나노바나나로 생성한 이미지를 banner.jpg로 저장 후 아래 주석 해제 -->
+<img src="banner.jpg" alt="신봉역 미래 컨셉" class="banner-img">
+
+<div class="hero">
+  <h1>🚇 동백신봉선 · 신봉동 현황판</h1>
+  <div class="subtitle">용인 수지구 신봉동 교통·부동산·지역 소식 종합</div>
+  <div class="counter-box">
+    <div class="counter-label">신봉역을 기다린 지</div>
+    <div class="counter-main" id="dayCounter"></div>
+    <div class="counter-since">2013년 1월 1일 00:00:00 기준 (경기도 도시철도 기본계획 최초 반영)</div>
+  </div>
+  <div class="meta">마지막 업데이트: <span class="time" id="updateTime">로딩 중...</span></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-cat="timeline">📋 추진 경과</button>
+  <button class="tab" data-cat="news">📰 최신 뉴스</button>
+  <button class="tab" data-cat="mayor">🏛️ 시장 동향</button>
+  <button class="tab" data-cat="realestate">🏠 부동산</button>
+  <button class="tab" data-cat="community">💬 주민 동향</button>
+  <button class="tab" data-cat="board">✍️ 주민 게시판</button>
+</div>
+
+<div class="container">
+
+  <!-- 추진 경과 타임라인 -->
+  <div class="category active" id="cat-timeline">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2026.03 — 사전 타당성 조사 발주</div>
+        <div class="timeline-text">용인시 제1회 추경에 사전 타당성 조사 용역비 편성. 이상일 시장 "신속히 진행하겠다"</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026.03 — 주민 갈등 심화</div>
+        <div class="timeline-text">동백신봉선 노선 두고 주민 간 갈등. "우리 집 앞 역 지나야" 요구 충돌</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026.02 — 용인시 사전 타당성 조사 추진</div>
+        <div class="timeline-text">용인시, 도시철도 '동백신봉선' 신설 사전타당성 조사 추진 (연합뉴스, KBS, 오마이뉴스 등 보도)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026.01 — 용인시 속도전</div>
+        <div class="timeline-text">용인시, '동백신봉선 신설·용인선 연장' 속도낸다 (뉴스1)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2025.12.12 — 국토부 구축계획 반영 ★</div>
+        <div class="timeline-text">제2차 경기도 도시철도망 구축계획에 동백신봉선 신설 + 용인선 연장 공식 반영. 국토교통부 승인·고시. "중요한 관문 넘었다"</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2025.12 — 경기도 도시철도 지도 변경</div>
+        <div class="timeline-text">용인경전철 광교 연장 + 동백~신봉선 본격 추진 보도</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2025 — 주민 청원 1,111명+</div>
+        <div class="timeline-text">신봉동 주민 1,111명 이상 서명. 성복동→신봉동 구간 변경 요청 청원</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2024 — 경기도의회 검토</div>
+        <div class="timeline-text">김병민 용인특례시의회 의원 "동백-신봉선 철도망 구축 검토 촉구"</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2013 — 최초 반영</div>
+        <div class="timeline-text">경기도 도시철도 기본계획에 동백-신봉 노선 최초 포함</div>
+      </div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="https://namu.wiki/w/%EB%8F%99%EB%B0%B1%EC%8B%A0%EB%B4%89%EC%84%A0" target="_blank">나무위키</a>
+      <a class="source-link" href="https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003198064" target="_blank">오마이뉴스</a>
+      <a class="source-link" href="https://www.yonginilbo.com/news/article.html?no=106566" target="_blank">용인일보</a>
+    </div>
+  </div>
+
+  <!-- 최신 뉴스 -->
+  <div class="category" id="cat-news">
+    <div class="source-links">
+      <a class="source-link" href="https://search.naver.com/search.naver?where=news&query=동백신봉선" target="_blank">네이버 뉴스</a>
+      <a class="source-link" href="https://search.naver.com/search.naver?where=news&query=신봉역+용인+수지" target="_blank">신봉역 뉴스</a>
+      <a class="source-link" href="https://www.google.com/search?q=동백신봉선&tbm=nws" target="_blank">구글 뉴스</a>
+    </div>
+    <div class="items" id="items-news"><div class="loading">뉴스를 불러오는 중...</div></div>
+  </div>
+
+  <!-- 시장 동향 -->
+  <div class="category" id="cat-mayor">
+    <div class="source-links">
+      <a class="source-link" href="https://www.facebook.com/people/%EC%9D%B4%EC%83%81%EC%9D%BC/100000951799614/" target="_blank">이상일 시장 페이스북</a>
+      <a class="source-link" href="https://www.facebook.com/yicity/" target="_blank">용인시청 페이스북</a>
+      <a class="source-link" href="https://www.yongin.go.kr/home/mayor/jcmIf/jcmIfPrf.jsp" target="_blank">시민시장실</a>
+      <a class="source-link" href="https://search.naver.com/search.naver?where=news&query=이상일+용인시장+동백신봉선" target="_blank">관련 뉴스</a>
+    </div>
+    <div class="items" id="items-mayor"><div class="loading">시장 동향을 불러오는 중...</div></div>
+  </div>
+
+  <!-- 부동산 -->
+  <div class="category" id="cat-realestate">
+    <div class="source-links">
+      <a class="source-link" href="https://search.naver.com/search.naver?where=blog&query=용인+수지+신봉동+아파트+시세" target="_blank">네이버 블로그</a>
+      <a class="source-link" href="https://hogangnono.com" target="_blank">호갱노노</a>
+      <a class="source-link" href="https://search.naver.com/search.naver?where=news&query=수지+신봉동+부동산+아파트" target="_blank">부동산 뉴스</a>
+    </div>
+    <div class="items" id="items-realestate"><div class="loading">부동산 정보를 불러오는 중...</div></div>
+  </div>
+
+  <!-- 주민 동향 -->
+  <div class="category" id="cat-community">
+    <div class="source-links">
+      <a class="source-link" href="https://search.naver.com/search.naver?where=cafearticle&query=동백신봉선+신봉동" target="_blank">네이버 카페</a>
+      <a class="source-link" href="https://search.naver.com/search.naver?where=blog&query=동백신봉선+신봉동+주민" target="_blank">네이버 블로그</a>
+    </div>
+    <div class="items" id="items-community"><div class="loading">주민 동향을 불러오는 중...</div></div>
+  </div>
+
+  <!-- 주민 게시판 (Disqus) -->
+  <div class="category" id="cat-board">
+    <div class="board-section">
+      <h3>✍️ 신봉동 주민 게시판</h3>
+      <p style="font-size:12px; color:#888; margin-bottom:16px;">동백신봉선, 신봉역, 신봉동 생활에 대한 의견을 자유롭게 남겨주세요.</p>
+      <div id="disqus_thread"></div>
+    </div>
+  </div>
+
+</div>
+
+<button class="refresh-btn" onclick="loadAll()">🔄 새로고침</button>
+
+<script>
+// === Counter ===
+const SINCE_DATE = new Date('2013-01-01T00:00:00+09:00');
+function updateCounter() {
+  const now = new Date();
+  let diff = Math.floor((now - SINCE_DATE) / 1000);
+  const years = Math.floor(diff / (365.25 * 24 * 3600));
+  diff -= Math.floor(years * 365.25 * 24 * 3600);
+  const days = Math.floor(diff / (24 * 3600));
+  diff -= days * 24 * 3600;
+  const hours = Math.floor(diff / 3600);
+  diff -= hours * 3600;
+  const mins = Math.floor(diff / 60);
+  const secs = diff % 60;
+  document.getElementById('dayCounter').innerHTML =
+    `<span class="num">${years}</span><span class="unit">년</span> ` +
+    `<span class="num">${days}</span><span class="unit">일</span> ` +
+    `<span class="sec">${String(hours).padStart(2,'0')}</span><span class="unit">시간</span> ` +
+    `<span class="sec">${String(mins).padStart(2,'0')}</span><span class="unit">분</span> ` +
+    `<span class="sec">${String(secs).padStart(2,'0')}</span><span class="unit">초</span>`;
+}
+updateCounter();
+setInterval(updateCounter, 1000);
+
+// === Tabs ===
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.category').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('cat-' + tab.dataset.cat).classList.add('active');
+  });
+});
+
+// === News Feed ===
+const RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
+const FEEDS = {
+  news: 'https://news.google.com/rss/search?q=동백신봉선+OR+신봉역+용인+수지+-운천&hl=ko&gl=KR&ceid=KR:ko',
+  mayor: 'https://news.google.com/rss/search?q=이상일+용인시장+교통+OR+철도+OR+동백신봉선+-운천&hl=ko&gl=KR&ceid=KR:ko',
+  realestate: 'https://news.google.com/rss/search?q=수지+신봉동+아파트+OR+부동산+OR+시세+-운천+-운천신봉&hl=ko&gl=KR&ceid=KR:ko',
+  community: 'https://news.google.com/rss/search?q=신봉동+수지+주민+OR+동백신봉선+주민+-운천&hl=ko&gl=KR&ceid=KR:ko',
+};
+
+function renderItems(catId, items) {
+  const container = document.getElementById('items-' + catId);
+  // Filter out 운천신봉동 in client side too
+  items = items.filter(item => {
+    const text = (item.title + item.description).toLowerCase();
+    return !text.includes('운천');
+  });
+  if (!items.length) {
+    container.innerHTML = '<div class="loading">관련 데이터가 없습니다. 위 링크에서 직접 검색해 보세요.</div>';
+    return;
+  }
+  container.innerHTML = items.map(item => {
+    const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('ko-KR') : '';
+    const title = item.title || '';
+    const link = item.link || '';
+    const desc = (item.description || '').replace(/<[^>]+>/g, '').replace(/&[^;]+;/g, ' ').slice(0, 150);
+    return `<a href="${link}" target="_blank" class="item">
+      <div class="item-title">${title}</div>
+      <div class="item-desc">${desc}</div>
+      <div class="item-meta">${date}</div>
+    </a>`;
+  }).join('');
+}
+
+async function loadCategory(catId) {
+  try {
+    const url = RSS2JSON + encodeURIComponent(FEEDS[catId]);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Fetch failed');
+    const json = await res.json();
+    if (json.status === 'ok' && json.items) {
+      renderItems(catId, json.items.slice(0, 10));
+    } else { throw new Error('No items'); }
+  } catch (e) {
+    document.getElementById('items-' + catId).innerHTML =
+      '<div class="error">데이터를 불러올 수 없습니다. 위 링크에서 직접 확인해 주세요.</div>';
+  }
+}
+
+async function loadAll() {
+  document.getElementById('updateTime').textContent = '업데이트 중...';
+  for (const catId of Object.keys(FEEDS)) { await loadCategory(catId); }
+  document.getElementById('updateTime').textContent =
+    new Date().toLocaleString('ko-KR') + ' · 1시간 간격 자동 갱신';
+}
+
+loadAll();
+setInterval(loadAll, 60 * 60 * 1000);
+
+// === Disqus ===
+var disqus_config = function () {
+  this.page.url = window.location.href;
+  this.page.identifier = 'sinbong-station-board';
+  this.page.title = '동백신봉선 신봉동 주민 게시판';
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://sinbong-station.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>게시판을 보려면 JavaScript를 활성화해주세요.</noscript>
+</body>
+</html>
