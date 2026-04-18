@@ -13,23 +13,24 @@
 
   .hero {
     background: linear-gradient(135deg, #1a1a2e 0%, #0a3d62 50%, #1a1a2e 100%);
-    padding: 28px 24px 20px;
-    text-align: center;
+    padding: 12px 24px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
     border-bottom: 3px solid #FFE13B;
   }
-  .hero h1 { font-size: 20px; font-weight: 800; color: #FFE13B; margin-bottom: 6px; }
-  .hero .subtitle { font-size: 12px; color: #aaa; margin-bottom: 14px; }
+  .hero-left { display: flex; align-items: center; gap: 12px; }
+  .hero h1 { font-size: 16px; font-weight: 800; color: #FFE13B; white-space: nowrap; }
+  .hero .subtitle { font-size: 11px; color: #aaa; display: none; }
   .counter-box {
-    background: rgba(255,225,59,0.08); border: 2px solid #FFE13B;
-    border-radius: 16px; padding: 18px 24px; display: inline-block; min-width: 300px;
+    background: rgba(255,225,59,0.08); border: 1px solid #FFE13B;
+    border-radius: 10px; padding: 8px 16px; display: flex; align-items: center; gap: 8px;
   }
-  .counter-label { font-size: 13px; color: #FFE13B; font-weight: 600; margin-bottom: 6px; }
-  .counter-main { font-size: 18px; font-weight: 700; color: #FFE13B; line-height: 1.6; }
-  .counter-main .num { font-size: 36px; font-weight: 900; }
-  .counter-main .unit { font-size: 14px; font-weight: 600; margin: 0 2px; }
-  .counter-main .sec { font-size: 28px; }
-  .counter-since { font-size: 10px; color: #888; margin-top: 6px; }
-  .meta { font-size: 11px; color: #666; margin-top: 10px; }
+  .counter-label { font-size: 11px; color: #FFE13B; font-weight: 600; white-space: nowrap; }
+  .counter-main { font-size: 14px; font-weight: 700; color: #FFE13B; white-space: nowrap; }
+  .counter-main .num { font-size: 22px; font-weight: 900; }
+  .counter-main .unit { font-size: 11px; font-weight: 600; margin: 0 1px; }
+  .counter-main .sec { font-size: 18px; }
+  .counter-since { display: none; }
+  .meta { font-size: 10px; color: #666; white-space: nowrap; }
   .meta .time { color: #FFE13B; }
 
   .tabs {
@@ -92,10 +93,10 @@
   }
 
   @media (max-width: 768px) {
-    .counter-main .num { font-size: 28px; }
-    .counter-main .sec { font-size: 22px; }
-    .hero { padding: 20px 16px; }
-    .counter-box { min-width: auto; width: 90%; }
+    .hero { flex-direction: column; align-items: flex-start; padding: 10px 16px; }
+    .hero-left { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .counter-main .num { font-size: 20px; }
+    .counter-main .sec { font-size: 16px; }
   }
 </style>
 </head>
@@ -105,14 +106,14 @@
 <img src="banner.jpg" alt="신봉역 미래 컨셉" class="banner-img">
 
 <div class="hero">
-  <h1>🚇 동백신봉선 · 신봉동 현황판</h1>
-  <div class="subtitle">용인 수지구 신봉동 교통·부동산·지역 소식 종합</div>
-  <div class="counter-box">
-    <div class="counter-label">신봉역을 기다린 지</div>
-    <div class="counter-main" id="dayCounter"></div>
-    <div class="counter-since">2013년 1월 1일 00:00:00 기준 (경기도 도시철도 기본계획 최초 반영)</div>
+  <div class="hero-left">
+    <h1>🚇 동백신봉선 · 신봉동 현황판</h1>
+    <div class="counter-box">
+      <div class="counter-label">신봉역을 기다린 지</div>
+      <div class="counter-main" id="dayCounter"></div>
+    </div>
   </div>
-  <div class="meta">마지막 업데이트: <span class="time" id="updateTime">로딩 중...</span></div>
+  <div class="meta">업데이트: <span class="time" id="updateTime">로딩 중...</span></div>
 </div>
 
 <div class="tabs">
