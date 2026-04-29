@@ -122,9 +122,8 @@
 
 <div class="tabs">
   <button class="tab active" data-cat="timeline">📋 추진 경과</button>
-  <button class="tab" data-cat="news">📰 최신 뉴스</button>
+  <button class="tab" data-cat="news">📰 뉴스 · 시장 동향</button>
   <button class="tab" data-cat="politicians">🏛️ 정치인 활동</button>
-  <button class="tab" data-cat="mayor">📢 시장 동향</button>
   <button class="tab" data-cat="realestate">🏠 부동산</button>
   <button class="tab" data-cat="community">💬 주민 동향</button>
   <button class="tab" data-cat="board">✍️ 주민 게시판</button>
@@ -206,15 +205,31 @@
         </div>
         <div style="font-size:10px; color:#2ECC71; margin-top:8px;">확인된 활동 5건</div>
       </div>
-      <!-- 부승찬 의원 -->
+      <!-- 현근택 민주당 용인시장 후보 -->
       <div style="background:#1a1a2e; border-radius:10px; padding:14px; border:1px solid #2a2a4a;">
-        <div style="font-size:13px; font-weight:700; color:#FFE13B; margin-bottom:10px;">부승찬 국회의원 (용인병)</div>
+        <div style="font-size:13px; font-weight:700; color:#FFE13B; margin-bottom:10px;">현근택 민주당 용인시장 후보</div>
         <div style="font-size:11px; color:#ddd; line-height:1.8;">
-          <div style="color:#888; padding:20px 0; text-align:center;">
-            신봉동 교통 관련<br>공개 확인된 활동을 조사 중입니다.
+          <div style="margin-bottom:6px; padding-left:8px; border-left:2px solid #3498DB;">
+            <span style="color:#888;">2026.04.27</span> 오마이TV "고립된 시장으로는 110만 용인특례시 미래 담보 불가"
+          </div>
+          <div style="margin-bottom:6px; padding-left:8px; border-left:2px solid #3498DB;">
+            <span style="color:#888;">2026.04.13</span> 민주당 본경선 과반 득표 → 6/3 지방선거 후보 확정 (이상일 시장과 양자대결)
+          </div>
+          <div style="margin-bottom:6px; padding-left:8px; border-left:2px solid #3498DB;">
+            <span style="color:#888;">2026.04</span> "수지·기흥은 쪼개기 식 개발로 교통·인프라 영향" — 광역 교통망 재정비 시사
+          </div>
+          <div style="margin-bottom:6px; padding-left:8px; border-left:2px solid #3498DB;">
+            <span style="color:#888;">2026.04</span> "처인구는 '선 계획 후 개발' 원칙 — 광역 교통망 먼저 수립"
+          </div>
+          <div style="margin-bottom:6px; padding-left:8px; border-left:2px solid #3498DB;">
+            <span style="color:#888;">2026.04</span> 합동토론회 — 삼성 1기 팹 조기 가동 + 수도권 연결 교통 확충
+          </div>
+          <div style="padding-left:8px; border-left:2px solid #3498DB;">
+            <span style="color:#888;">2026.04</span> "이재명 정부와 '원팀'으로 시정 정상화" — 중앙·도·시 상설 협의체 제안
           </div>
         </div>
-        <div style="font-size:10px; color:#888; margin-top:8px;">확인된 활동 0건 (2026.04.18 기준)</div>
+        <div style="font-size:10px; color:#FFE13B; margin-top:8px;">📊 경기일보 여론조사 (4월): 현근택 43% vs 이상일 36% (오차범위 내)</div>
+        <div style="font-size:10px; color:#888; margin-top:4px;">⚠️ 신봉역·동백신봉선 명시적 발언 부재 (확인된 일반 광역교통망 발언 6건)</div>
       </div>
       <!-- 백군기 전 시장 -->
       <div style="background:#1a1a2e; border-radius:10px; padding:14px; border:1px solid #2a2a4a; margin-top:10px;">
@@ -237,69 +252,119 @@
     <div style="font-size:11px; color:#FFE13B; margin-top:8px;">💬 정치인 활동을 제보해 주시면 확인 후 반영해 드립니다. 주민 게시판에 남겨주세요.</div>
   </div>
 
-  <!-- 최신 뉴스 -->
+  <!-- 뉴스 · 시장 동향 (통합) -->
   <div class="category" id="cat-news">
     <div class="source-links">
       <a class="source-link" href="https://search.naver.com/search.naver?where=news&query=동백신봉선" target="_blank">네이버 뉴스</a>
       <a class="source-link" href="https://search.naver.com/search.naver?where=news&query=신봉역+용인+수지" target="_blank">신봉역 뉴스</a>
       <a class="source-link" href="https://www.google.com/search?q=동백신봉선&tbm=nws" target="_blank">구글 뉴스</a>
-    </div>
-    <div class="items" id="items-news"><div class="loading">뉴스를 불러오는 중...</div></div>
-  </div>
-
-  <!-- 시장 동향 -->
-  <div class="category" id="cat-mayor">
-    <div class="source-links">
-      <a class="source-link" href="https://www.facebook.com/people/%EC%9D%B4%EC%83%81%EC%9D%BC/100000951799614/" target="_blank">이상일 시장 페이스북</a>
-      <a class="source-link" href="https://www.facebook.com/yicity/" target="_blank">용인시청 페이스북</a>
+      <a class="source-link" href="https://www.facebook.com/people/%EC%9D%B4%EC%83%81%EC%9D%BC/100000951799614/" target="_blank">이상일 시장 FB</a>
+      <a class="source-link" href="https://www.facebook.com/yicity/" target="_blank">용인시청 FB</a>
       <a class="source-link" href="https://www.yongin.go.kr/home/mayor/jcmIf/jcmIfPrf.jsp" target="_blank">시민시장실</a>
-      <a class="source-link" href="https://search.naver.com/search.naver?where=news&query=이상일+용인시장+동백신봉선" target="_blank">관련 뉴스</a>
     </div>
-    <!-- AI 분석 섹션 (수동 업데이트) -->
+    <!-- AI 분석 섹션 (2026.04.29 기준 최신 업데이트) -->
     <div style="background:#12122a; border-radius:10px; padding:14px; margin-bottom:14px; border-left:3px solid #FFE13B;">
-      <div style="font-size:12px; color:#FFE13B; font-weight:700; margin-bottom:8px;">📊 주요 기사 AI 분석 (2026.04.18 기준)</div>
+      <div style="font-size:12px; color:#FFE13B; font-weight:700; margin-bottom:8px;">📊 주요 기사 AI 분석 (2026.04.29 기준)</div>
       <div style="font-size:12px; color:#ddd; line-height:1.8;">
-        <p style="margin-bottom:8px;">• <strong>경기남부광역철도 5차 국가철도망 반영 건의 (4/15)</strong><br>
-        <span style="color:#2ECC71; font-size:11px;">→ 호재: 이상일 시장이 국가철도망 구축계획에 경기남부광역철도를 건의. 동백신봉선과 함께 수지구 교통 인프라 확충 의지가 뚜렷함.</span></p>
-        <p style="margin-bottom:8px;">• <strong>시정 임기말 SA·이행률 95% 달성 (4/16)</strong><br>
-        <span style="color:#FFE13B; font-size:11px;">→ 참고: 현 시장의 공약 이행률이 높다는 평가. 동백신봉선 사전 타당성 조사도 이행 중인 공약에 포함.</span></p>
-        <p>• <strong>"반도체 산단 동력으로 용인 르네상스 2.0" (4/16)</strong><br>
-        <span style="color:#2ECC71; font-size:11px;">→ 호재: 반도체 산단 개발 → 인구 유입 → 교통 수요 증가 → 동백신봉선 타당성 강화 근거.</span></p>
+        <p style="margin-bottom:10px;">• <strong>동백신봉선 사전타당성 조사 용역 상반기 발주 추진 (4월 진행 중)</strong><br>
+        <span style="color:#2ECC71; font-size:11px;">→ 호재: 시민청원 1,035명 응답 + 1회 추경 용역비 반영 완료. 14.7㎞ 노선 — 신봉동 ↔ 성복역(신분당선) ↔ 구성역(GTX-A·수인분당선) ↔ 동백역(경전철) 연결. 후속 예비타당성조사 착수 임박.</span></p>
+        <p style="margin-bottom:10px;">• <strong>경기남부광역철도 5차 국가철도망 반영 건의 (4/15)</strong><br>
+        <span style="color:#2ECC71; font-size:11px;">→ 호재: 이상일 시장이 국가철도망 구축계획에 건의. 동백신봉선 + 경기남부광역철도 = 신봉동 더블 역세권 가능성. B/C 1.2 확보 시 수지구 핵심 호재.</span></p>
+        <p style="margin-bottom:10px;">• <strong>6·3 지방선거 변수 — 현근택(민주) 43% vs 이상일(국힘) 36% (4월 여론조사)</strong><br>
+        <span style="color:#E74C3C; font-size:11px;">→ 리스크: 시장 교체 시 사업 추진 속도·우선순위 변동 가능. 현근택 후보는 "광역 교통망 재정비" 발언 있으나 동백신봉선 명시 발언 부재 → 양 후보 공약 비교 필요.</span></p>
+        <p style="margin-bottom:10px;">• <strong>반도체 슈퍼사이클 — SK하이닉스/삼성 성과급 인상 (4월)</strong><br>
+        <span style="color:#2ECC71; font-size:11px;">→ 호재: 경기도 반도체 벨트 구매력 증가 → 용인 부동산 호재. 반도체 산단 인구 유입은 동백신봉선 타당성 강화 근거. 신봉동도 간접 수혜권.</span></p>
+        <p>• <strong>주민 갈등 지속 — 노선 정차역 둘러싼 이해 충돌 (3월)</strong><br>
+        <span style="color:#FFE13B; font-size:11px;">→ 참고: "우리 집 앞 역 지나야" 요구 충돌. 사전타당성 조사 결과 발표 후 노선 확정 시 갈등 재점화 가능 → 주민 협의체 사전 구축 필요.</span></p>
       </div>
     </div>
-    <div class="items" id="items-mayor"><div class="loading">시장 동향을 불러오는 중...</div></div>
+    <div class="items" id="items-news"><div class="loading">뉴스를 불러오는 중...</div></div>
   </div>
 
   <!-- 부동산 -->
   <div class="category" id="cat-realestate">
     <div class="source-links">
-      <a class="source-link" href="https://search.naver.com/search.naver?where=blog&query=용인+수지+신봉동+아파트+시세" target="_blank">네이버 블로그</a>
       <a class="source-link" href="https://hogangnono.com/region/4146510500/0/apt-list" target="_blank">호갱노노 신봉동</a>
+      <a class="source-link" href="https://kbland.kr/c/5537" target="_blank">KB부동산 신봉동</a>
+      <a class="source-link" href="https://rt.molit.go.kr/pt/gis/gis.do?srhThingSecd=A" target="_blank">국토부 실거래가</a>
       <a class="source-link" href="https://search.naver.com/search.naver?where=news&query=수지+신봉동+부동산+아파트" target="_blank">부동산 뉴스</a>
+      <a class="source-link" href="https://www.reb.or.kr/reb/cm/cntnts/cntntsView.do?mi=10333&cntntsId=1033" target="_blank">한국부동산원 시세</a>
     </div>
+
+    <!-- 시세 요약 -->
     <div style="background:#1a1a2e; border-radius:12px; padding:16px; margin-bottom:16px; border:1px solid #2a2a4a;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
         <h3 style="color:#FFE13B; font-size:14px;">신봉동 아파트 평당가 추이</h3>
-        <span style="font-size:10px; color:#888;">최종 업데이트: 2026.04.18</span>
+        <span style="font-size:10px; color:#888;">최종 업데이트: 2026.04.29</span>
       </div>
       <canvas id="priceChart" height="200"></canvas>
       <div style="display:flex; gap:16px; margin-top:12px; flex-wrap:wrap;">
         <div style="background:#12122a; padding:10px 14px; border-radius:8px; flex:1; min-width:120px;">
-          <div style="font-size:10px; color:#888;">신봉동 평당가 (2025)</div>
-          <div style="font-size:20px; font-weight:800; color:#FFE13B;">2,693<span style="font-size:12px;">만원</span></div>
-          <div style="font-size:10px; color:#2ECC71;">▲ 7.3% YoY</div>
+          <div style="font-size:10px; color:#888;">신봉동 평당가 (2026.4)</div>
+          <div style="font-size:20px; font-weight:800; color:#FFE13B;">2,750<span style="font-size:12px;">만원</span></div>
+          <div style="font-size:10px; color:#2ECC71;">▲ 2.1% (vs 2025년말)</div>
         </div>
         <div style="background:#12122a; padding:10px 14px; border-radius:8px; flex:1; min-width:120px;">
-          <div style="font-size:10px; color:#888;">수지구 평균</div>
-          <div style="font-size:20px; font-weight:800; color:#E74C3C;">3,213<span style="font-size:12px;">만원</span></div>
-          <div style="font-size:10px; color:#E74C3C;">격차 520만원 (16% 저평가)</div>
+          <div style="font-size:10px; color:#888;">수지구 평균 (2026.4)</div>
+          <div style="font-size:20px; font-weight:800; color:#E74C3C;">3,280<span style="font-size:12px;">만원</span></div>
+          <div style="font-size:10px; color:#E74C3C;">격차 530만원 (16% 저평가)</div>
         </div>
         <div style="background:#12122a; padding:10px 14px; border-radius:8px; flex:1; min-width:120px;">
-          <div style="font-size:10px; color:#888;">최근 거래 (2026.3)</div>
-          <div style="font-size:12px; color:#ddd; line-height:1.6;">자이1차 8억<br>센트레빌5단지 9.4억<br>하이빌4단지 9.3억</div>
+          <div style="font-size:10px; color:#888;">최근 실거래 (2026.3)</div>
+          <div style="font-size:12px; color:#ddd; line-height:1.6;">자이1차 8.0억<br>센트레빌5단지 9.4억<br>하이빌4단지 9.3억</div>
         </div>
       </div>
     </div>
+
+    <!-- 시장 환경 분석 (4월 신규) -->
+    <div style="background:#12122a; border-radius:10px; padding:14px; margin-bottom:14px; border-left:3px solid #2ECC71;">
+      <div style="font-size:12px; color:#2ECC71; font-weight:700; margin-bottom:8px;">📈 2026년 4월 시장 환경 분석</div>
+      <div style="font-size:12px; color:#ddd; line-height:1.8;">
+        <p style="margin-bottom:8px;">• <strong>반도체 슈퍼사이클 (4월)</strong> — SK하이닉스·삼성전자 성과급 대폭 인상 → 경기 반도체 벨트 구매력 증가. 용인 처인구 산단·수지구 거주 수요 동반 상승.</p>
+        <p style="margin-bottom:8px;">• <strong>전국 공시가 5년 만에 최대 폭 상승 (4월)</strong> — 실거래 대비 공시가 격차 논란. 보유세·종부세 부담 변수.</p>
+        <p style="margin-bottom:8px;">• <strong>동백신봉선 사전타당성 조사 진행</strong> — 신봉역 신설 확정 시 신봉동 평당가 +15~20% 추정 (역세권 프리미엄). 단, 결과 발표 전까지 호가만 선반영.</p>
+        <p style="margin-bottom:0;">• <strong>경기남부광역철도 호재 가능성</strong> — 5차 국가철도망 반영 시 신봉동 "더블 역세권" → 수지구 평균 격차 16% 해소 가능.</p>
+      </div>
+    </div>
+
+    <!-- 주요 단지 호가 (4월 신규) -->
+    <div style="background:#1a1a2e; border-radius:10px; padding:14px; margin-bottom:14px; border:1px solid #2a2a4a;">
+      <div style="font-size:12px; color:#FFE13B; font-weight:700; margin-bottom:10px;">🏢 주요 단지별 호가 동향 (2026.04 기준 추정)</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:8px; font-size:11px;">
+        <div style="background:#12122a; padding:10px; border-radius:6px;">
+          <div style="color:#FFE13B; font-weight:700;">신봉마을자이1차</div>
+          <div style="color:#888;">전용 84㎡ · 1999년</div>
+          <div style="color:#ddd; margin-top:4px;">8.0~8.5억</div>
+        </div>
+        <div style="background:#12122a; padding:10px; border-radius:6px;">
+          <div style="color:#FFE13B; font-weight:700;">신봉마을자이2차</div>
+          <div style="color:#888;">전용 84㎡ · 2002년</div>
+          <div style="color:#ddd; margin-top:4px;">8.5~9.0억</div>
+        </div>
+        <div style="background:#12122a; padding:10px; border-radius:6px;">
+          <div style="color:#FFE13B; font-weight:700;">동부센트레빌5단지</div>
+          <div style="color:#888;">전용 84㎡ · 2002년</div>
+          <div style="color:#ddd; margin-top:4px;">9.0~9.5억</div>
+        </div>
+        <div style="background:#12122a; padding:10px; border-radius:6px;">
+          <div style="color:#FFE13B; font-weight:700;">동부센트레빌6단지</div>
+          <div style="color:#888;">전용 84㎡ · 2002년</div>
+          <div style="color:#ddd; margin-top:4px;">9.0~9.5억</div>
+        </div>
+        <div style="background:#12122a; padding:10px; border-radius:6px;">
+          <div style="color:#FFE13B; font-weight:700;">하이빌4단지</div>
+          <div style="color:#888;">전용 84㎡ · 2003년</div>
+          <div style="color:#ddd; margin-top:4px;">9.0~9.5억</div>
+        </div>
+        <div style="background:#12122a; padding:10px; border-radius:6px;">
+          <div style="color:#FFE13B; font-weight:700;">신봉주공</div>
+          <div style="color:#888;">중·소형 · 1999년</div>
+          <div style="color:#ddd; margin-top:4px;">5.5~6.5억</div>
+        </div>
+      </div>
+      <div style="font-size:10px; color:#666; margin-top:10px;">※ 호가는 KB·호갱노노·실거래 기반 추정. 정확한 시세는 위 외부 링크에서 확인.</div>
+    </div>
+
     <div class="items" id="items-realestate"><div class="loading">부동산 뉴스를 불러오는 중...</div></div>
   </div>
 
@@ -362,9 +427,9 @@ document.querySelectorAll('.tab').forEach(tab => {
 
 // === News Feed ===
 const RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
+// 통합 뉴스: 동백신봉선·신봉역·이상일 시장·현근택 후보 키워드를 1개 피드로 합침
 const FEEDS = {
-  news: 'https://news.google.com/rss/search?q=동백신봉선+OR+신봉역+용인+수지+-운천&hl=ko&gl=KR&ceid=KR:ko',
-  mayor: 'https://news.google.com/rss/search?q=이상일+용인시장+교통+OR+철도+OR+동백신봉선+-운천&hl=ko&gl=KR&ceid=KR:ko',
+  news: 'https://news.google.com/rss/search?q=(동백신봉선+OR+신봉역+OR+(이상일+용인시장)+OR+(현근택+용인))+-운천&hl=ko&gl=KR&ceid=KR:ko',
   realestate: 'https://news.google.com/rss/search?q=수지+신봉동+아파트+OR+부동산+OR+시세+-운천+-운천신봉&hl=ko&gl=KR&ceid=KR:ko',
   community: 'https://news.google.com/rss/search?q=신봉동+수지+주민+OR+동백신봉선+주민+-운천&hl=ko&gl=KR&ceid=KR:ko',
 };
@@ -409,15 +474,50 @@ async function loadCategory(catId) {
   }
 }
 
+// 자동 갱신 간격 (30분)
+const REFRESH_INTERVAL_MS = 30 * 60 * 1000;
+let nextRefreshAt = 0;
+
 async function loadAll() {
   document.getElementById('updateTime').textContent = '업데이트 중...';
-  for (const catId of Object.keys(FEEDS)) { await loadCategory(catId); }
+  // 병렬 호출로 속도 개선 (이전: 직렬)
+  await Promise.all(Object.keys(FEEDS).map(catId => loadCategory(catId)));
+  const now = new Date();
+  nextRefreshAt = now.getTime() + REFRESH_INTERVAL_MS;
   document.getElementById('updateTime').textContent =
-    new Date().toLocaleString('ko-KR') + ' · 1시간 간격 자동 갱신';
+    now.toLocaleString('ko-KR') + ' · 30분 간격 자동 갱신';
+}
+
+// 다음 갱신까지 남은 시간 표시
+function updateRefreshCountdown() {
+  const el = document.getElementById('updateTime');
+  if (!el || nextRefreshAt === 0) return;
+  const remain = Math.max(0, nextRefreshAt - Date.now());
+  const mins = Math.floor(remain / 60000);
+  const secs = Math.floor((remain % 60000) / 1000);
+  const baseTxt = el.textContent.split(' · ')[0];
+  if (!el.textContent.includes('업데이트 중')) {
+    el.textContent = baseTxt + ` · 다음 갱신 ${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+  }
 }
 
 loadAll();
-setInterval(loadAll, 60 * 60 * 1000);
+setInterval(loadAll, REFRESH_INTERVAL_MS);
+setInterval(updateRefreshCountdown, 1000);
+
+// 탭 전환 시 즉시 새로고침 옵션
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('dblclick', () => {
+    loadAll();
+  });
+});
+
+// 페이지 visibility 변경 시 (다시 보일 때) 30분 이상 지났으면 자동 갱신
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && Date.now() > nextRefreshAt) {
+    loadAll();
+  }
+});
 
 // === Price Chart ===
 const ctx = document.getElementById('priceChart');
